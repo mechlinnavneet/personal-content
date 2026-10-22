@@ -185,7 +185,8 @@ export default function Home() {
       if (!window.confirm(`Import ${imported.length} items? Existing items will be kept; imported items will be added as new records.`)) return;
       await db.transaction("rw", db.items, async () => {
         for (const item of imported) {
-          const { id: _id, ...newItem } = item;
+          const newItem = { ...item };
+          delete newItem.id;
           await db.items.add(newItem);
         }
       });

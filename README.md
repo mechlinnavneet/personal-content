@@ -30,10 +30,10 @@ Open http://localhost:3000.
 2. In Netlify, choose **Add new site → Import an existing project**.
 3. Select the repository.
 4. Build command: `npm run build`.
-5. Publish directory: leave blank for the Next.js Runtime/plugin setup.
-6. Deploy. `netlify.toml` configures the Next.js plugin.
+5. Publish directory: `out`.
+6. Deploy. `netlify.toml` handles configuration automatically.
 
-Netlify's Next.js adapter may add hosting functions for rendering routes. This app itself does not create server endpoints for personal content.
+Because this app stores everything client-side in the browser, it exports as a pure static web app (`output: "export"`). It requires no serverless functions, ensuring instant load times and zero cold starts.
 
 ## Backups
 

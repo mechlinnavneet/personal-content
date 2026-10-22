@@ -52,7 +52,8 @@ export async function importBackup(file: File): Promise<VaultItem[]> {
     throw new Error("Unsupported backup format.");
   }
   return payload.items.map((item) => {
-    const { blobBase64, id: _oldId, ...rest } = item;
+    const { blobBase64, ...rest } = item;
+    delete (rest as { id?: number }).id;
     return {
       ...rest,
       ...(blobBase64 ? { blob: base64ToBlob(blobBase64, item.mimeType) } : {}),
